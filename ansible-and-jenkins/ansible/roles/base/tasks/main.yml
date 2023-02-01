@@ -1,0 +1,12 @@
+---
+- name: Update apt cache 
+  apt:
+    update_cache: yes
+
+- name: Install wget
+  apt:
+    name: get
+
+- name: Install gpg
+  apt:
+    name: gpg
