@@ -5,7 +5,7 @@
 
 - name: Install wget
   apt:
-    name: get
+    name: wget
 
 - name: Install gpg
   apt:
