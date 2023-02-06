@@ -1,14 +1,18 @@
-FROM ubuntu:20.04
+FROM alpine:latest
 
-WORKDIR /tmp
-RUN apt-get update && \
-    apt-get install -y curl wget unzip && \
-    wget https://releases.hashicorp.com/vault/1.12.0/vault_1.12.0_linux_amd64.zip && \
-    unzip vault_1.12.0_linux_amd64.zip && \
-    rm vault_1.12.0_linux_amd64.zip && \
-    mv /tmp/vault /usr/local/bin/vault
+RUN apk update \
+    && apk upgrade \
+    && apk add curl \
+    && apk add unzip
+
+RUN curl -LO https://releases.hashicorp.com/vault/1.3.0/vault_1.3.0_linux_amd64.zip \
+    && unzip *.zip \
+    && rm -r *.zip \
+    && chmod +x vault \
+    && mv vault /usr/local/bin
 
 ENV VAULT_ADDR 'http://127.0.0.1:8200'
 
 ENTRYPOINT [ "sh", "-c", "vault server -dev" ]
+
 EXPOSE 8200
