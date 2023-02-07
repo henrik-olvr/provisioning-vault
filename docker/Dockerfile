@@ -5,7 +5,7 @@ RUN apk update \
     && apk add curl \
     && apk add unzip
 
-RUN curl -LO https://releases.hashicorp.com/vault/1.3.0/vault_1.3.0_linux_amd64.zip \
+RUN curl -LO https://releases.hashicorp.com/vault/1.12.0/vault_1.12.0_linux_amd64.zip \
     && unzip *.zip \
     && rm -r *.zip \
     && chmod +x vault \
